@@ -1,4 +1,4 @@
-package evolution;
+package evolution.service;
 
 public class AnyClass {
 	public boolean anyMethod(String inputString) {

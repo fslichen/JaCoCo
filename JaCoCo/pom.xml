@@ -29,6 +29,7 @@
 		</dependency>
 	</dependencies>
 	<!-- Both maven clean package and maven jacoco:report generates the report under target site. -->
+	<!-- But once the project changes, jacoco:report won't update the report. -->
 	<build>
 		<plugins>
 			<!-- Copied from http://www.baeldung.com/jacoco -->
@@ -36,6 +37,19 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.7.9</version>
+				<configuration>
+					<!-- For more information abt how to exclude, see https://stackoverflow.com/questions/27799419/maven-jacoco-configuration-exclude-classes-packages-from-report-not-working -->
+					<excludes>
+						<!-- Do not use package name. -->
+						<!-- * matches zero or more characters. -->
+						<!-- ** matches zero or more directories. -->
+						<!-- ? matches a single character. -->
+						<exclude>**/*Application.*</exclude>
+						<!-- Excludes everything under evolution.
+						<exclude>evolution/**/*</exclude>
+						 -->
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
